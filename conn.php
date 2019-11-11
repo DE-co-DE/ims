@@ -1,0 +1,13 @@
+<?php
+$host="localhost";
+$user="root";
+$pass="";
+$db="ims";
+$conn=mysqli_connect($host,$user,$pass);
+if($conn)
+{
+mysqli_select_db($conn,$db);
+}
+//#h5$8IQ7~?o(
+//DT%i3kPB8#Un
+?>
