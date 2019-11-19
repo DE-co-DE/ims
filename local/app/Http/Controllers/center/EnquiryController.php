@@ -99,6 +99,7 @@ class EnquiryController extends Controller {
 				$data->course_fee       = $Request->get('course_fee');								
 				$data->batch       		= $Request->get('batch');								
 				$data->enquiry_date     = $Request->get('enquiry_date');								
+				$data->remark     = $Request->get('remark');								
 				$data->save();	
 				
 				//capture user activity
@@ -169,7 +170,8 @@ class EnquiryController extends Controller {
 				$data->gender   		= $Request->get('gender');								
 				$data->course_id   		= $Request->get('course_id');								
 				$data->batch   			= $Request->get('batch');								
-				$data->course_fee   	= $Request->get('course_fee');								
+				$data->course_fee   	= $Request->get('course_fee');	
+				$data->remark     = $Request->get('remark');							
 				$data->updated_by   	= Auth::user()->id;								
 				$data->save();			
 				

@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-		<title>Edit</title>
+		<title>Add New</title>
 		
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
@@ -37,6 +37,7 @@
 		<!-- end: Packet CSS -->
 		<!-- Favicon -->
 		<link rel="shortcut icon" href="favicon.ico" />
+		
 	</head>
 	<!-- end: HEAD -->
 	<body>
@@ -59,14 +60,14 @@
 					<div class="wrap-content container" id="container">
 						<!-- start: BREADCRUMB -->
 						<div class="breadcrumb-wrapper">
-							<h4 class="mainTitle no-margin"><i class="fa fa-plus"></i> Enquiry Edit</h4>
+							<h4 class="mainTitle no-margin"><i class="fa fa-plus"></i> Add New</h4>
 							
 							<ul class="pull-right breadcrumb">
 								<li>
 									<a href="{{Asset('center/home')}}"><i class="fa fa-home margin-right-5 text-large text-dark"></i>Home</a>
 								</li>
 								<li>
-									<i class="fa fa-graduation-cap"></i> Enquiry
+									<i class="fa fa-graduation-cap"></i> Users
 								</li>
 							</ul>
 						</div>					
@@ -85,31 +86,7 @@
 						<Br><p class="text-center list-group-item list-group-item-success">{{ Session::get('message') }}</p>
 						@endif
 						
-						<script>
-
-						function getFee(id)
-						{
 						
-						var xmlhttp;
-						if (window.XMLHttpRequest)
-						{// code for IE7+, Firefox, Chrome, Opera, Safari
-						xmlhttp=new XMLHttpRequest();
-						}
-						else
-						{// code for IE6, IE5
-						xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-						}
-						xmlhttp.onreadystatechange=function()
-						{
-						if (xmlhttp.readyState==4 && xmlhttp.status==200)
-						{
-						document.getElementById("fee").innerHTML=xmlhttp.responseText;
-						}
-						}
-						xmlhttp.open("GET","../../../getFee.php?id="+id,true);
-						xmlhttp.send();
-						}
-						</script>
 						
 						<!-- end: BREADCRUMB -->
 						<!-- start: FEATURED BOX LINKS -->
@@ -120,141 +97,76 @@
 						<div class="panel panel-white">
 						<div class="panel-body">
 						<h5 class="over-title"><i class="fa fa-plus"></i> Add New</h5>
-						<form action="{!! Asset('center/enquiry/edit/'.$res->id) !!}" method="post" class="form-login">
+						<form action="{!! Asset('center/users/add') !!}" method="post" class="form-login">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						<div class="row">
 						<div class="col-md-10">
 						<fieldset>
 						<legend>
-						Personal Details
+						Details
 						</legend>
 						<div class="form-group">
-						<label>First Name <span class="symbol required"></span> </label>
+						<label> Full Name <span class="symbol required"></span> </label>
 						<div class="form-group">
-						<input type="text"  name="first_name" id="name" class="form-control" required value="{{$res->first_name}}">
+						<input type="text"  name="name" id="name" class="form-control" required value="{{old('name')}}">
 						</div>
 						</div>
 						
 						<div class="form-group">
-						<label>Last Name <span class="symbol required"></span> </label>
+						<label> username <span class="symbol required"></span></label>
 						<div class="form-group">
-						<input type="text"  name="last_name" id="last_name" class="form-control" required value="{{$res->last_name}}">
+						<input type="text"  name="username" id="username" class="form-control" required  value="{{old('username')}}">
 						</div>
 						</div>
 						
+					
+						
 						<div class="form-group">
-						<label>Gender <span class="symbol required"></span> </label>
+						<label>Email id </label>
 						<div class="form-group">
-						<select name="gender" class="form-control">
-						<option value="Male" <?php if($res->gender == "Male"){ echo "selected"; } ?>>Male</option>
-						<option value="Female" <?php if($res->gender == "Female"){ echo "selected"; } ?>>Female</option>
+						<input type="email"  name="email" id="email" class="form-control"  value="{{old('email')}}">
+						</div>
+						</div>
+						<div class="form-group">
+						<label>Mobile Number </label>
+						<div class="form-group">
+						<input type="text"  name="mobile" id="mobile" class="form-control" required  value="{{old('mobile')}}">
+						</div>
+						</div>
+						<div class="form-group">
+
+						<label>Create a paswword <span class="symbol required"></span></label>
+						<div class="form-group">
+						<input type="password"  name="password" required id="password" class="form-control" required  value="{{old('password')}}">
+						</div>
+						</div>
+						<div class="form-group">
+						<label> Status <span class="symbol required"></span> </label>
+						<div class="form-group">
+						<select name="status" class="form-control" required>
+						<option value="0">Enable</option>
+						<option value="1">Disable</option>
 						</select>
 						</div>
 						</div>
 						
 						<div class="form-group">
-						<label>Mobile <span class="symbol required"></span></label>
+						<label> Select Permissions For This User <span class="symbol required"></span> </label>
 						<div class="form-group">
-						<input type="number"  name="mobile" id="phone" class="form-control" required  value="{{$res->mobile}}">
-						</div>
-						</div>
+						<select name="permissions[]" class="js-example-basic-multiple" required multiple style="width:100%;height:400px" placeholder="Select Batch..">
 						
-						<div class="form-group">
-						<label>Any other contact number ( <i>optional</i> ) </label>
-						<div class="form-group">
-						<input type="number"  name="contact_no" id="phone" class="form-control"   value="{{$res->contact_no}}">
-						</div>
-						</div>
-						
-						<div class="form-group">
-						<label> Email </label>
-						<div class="form-group">
-						<input type="email"  name="email" id="email" class="form-control"  value="{{$res->email}}">
-						</div>
-						</div>
-						
-						
-						
-						</fieldset>
-						<fieldset>
-						<legend>
-						Address
-						</legend>
-						
-						<div class="form-group">
-						<label> State <span class="symbol required"></span></label>
-						<div class="form-group">
-						<input type="text"  name="state" id="state" class="form-control"  value="{{$res->state}}">
-						</div>
-						</div>
-						
-						<div class="form-group">
-						<label> City <span class="symbol required"></span></label>
-						<div class="form-group">
-						<input type="text"  name="city" id="city" class="form-control"  value="{{$res->city}}">
-						</div>
-						</div>
-						
-						<div class="form-group">
-						<label> Address <span class="symbol required"></span></label>
-						<div class="form-group">
-						<textarea name="address" class="form-control" required>{{$res->address}}</textarea>
-						</div>
-						</div>
-						
-						</fieldset>
-						<fieldset>
-						<legend>
-						Course Details
-						</legend>
-						
-						<div class="form-group">
-						<label> Course </label>
-						<div class="form-group">
-						<select name="course_id" class="form-control" required onchange="getFee(this.value)" >
-						<option value="">Select Course</option>
 						<?php
-						$courses = DB::table("course")->where('status',0)->get();
-						foreach($courses as $course)
-						{
+						foreach($perms as $perm){
 						?>
-						<option value="{{$course->id}}" <?php if($course->id == $res->course_id){ echo "selected"; } ?>>{{$course->name}}</option>
+						<option value="{{$perm->name}}">{{$perm->name}}</option>
 						<?php } ?>
 						</select>
-						</div>
-						</div>
-						<span id="fee">
-						<div class="form-group" >
-						<label>Batch</label>
-						<div class="form-group">
-						<select name="batch" class="form-control" required>
-						<option value="">Select Batch</option>
-						<?php
-						$btc = DB::table("course_batch")->where('course_id',$res->course_id)->get();
-						foreach($btc as $bt)
-						{
-						?>
-						<option value="{{$bt->batch_name}}" <?php if($bt->batch_name == $res->batch){ echo "selected"; } ?>>{{$bt->batch_name}}</option>
-						<?php } ?>
-						</select>
-						</div>
-						</div>
-						
-						
-						</span>
-						
-						
-						<div class="form-group">
-						<label> Any Remarks ( <i>Optional</i> )</label>
-						<div class="form-group">
-						<textarea name="remark" class="form-control" >{{$res->remark}}</textarea>
 						</div>
 						</div>
 						
 						<div class="form-group">						
 						<div class="form-group">
 						<button type="submit" class="btn btn-wide btn-success">Save</button>
-						
 						</div>
 						</div>
 						
@@ -277,7 +189,7 @@
 			
 		</div>
 		<!-- start: MAIN JAVASCRIPTS -->
-		
+		<script src="{{Asset('bower_components/jquery/dist/jquery.min.js')}}"></script>
 		<script src="{{Asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 		<script src="{{Asset('bower_components/components-modernizr/modernizr.js')}}"></script>
 		<script src="{{Asset('bower_components/js-cookie/src/js.cookie.js')}}"></script>
@@ -307,7 +219,17 @@
 				Index.init();
 			});
 		</script>
-		
+		<link type="text/css" rel="stylesheet" href="{{Asset('multiSelect/jquery-te-1.4.0.css')}}">	
+		<script type="text/javascript" src="{{Asset('multiSelect/jquery-te-1.4.0.min.js')}}" charset="utf-8"></script>
+	
+    <script src="{{Asset('multiSelect/select2.js')}}"></script>
+	
+    <link rel="stylesheet" href="{{Asset('multiSelect/select2.css')}}">
+	<script>
+	$(function() {
+      $(".js-example-basic-multiple").select2();
+});
+  </script>	
 		<!-- end: JavaScript Event Handlers for this page -->
 	</body>
 

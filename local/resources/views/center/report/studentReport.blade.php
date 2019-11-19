@@ -36,7 +36,7 @@ foreach($students as $student)
 	$deposit = DB::table('fee')->where('student_id',$student->id)->where('course_id',$studentCourse->course_id)->where('type',1)->sum('amount');
 	
 	//get total
-	$courseFee = $fee - $studentCourse->discount - $studentCourse->old_course_fee;
+	$courseFee = intval($fee) - intval($studentCourse->discount) - intval($studentCourse->old_course_fee);
 	$balance   = $courseFee - $deposit;
 	
 	$totalCourseFee[] 	= $courseFee;

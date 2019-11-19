@@ -309,7 +309,7 @@
 								</tr>
 								<?php } ?>
 								
-								<?php $feeAmount = $totalFee - $crs->discount - $crs->old_course_fee; ?>
+								<?php $feeAmount = intval($totalFee) - intval($crs->discount) - intval($crs->old_course_fee); ?>
 								<tr>
 								<td><b>Total</b></td>
 								<td><b>Rs.{{ $feeAmount }}</b></td>

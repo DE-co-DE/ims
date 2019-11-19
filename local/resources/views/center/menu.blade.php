@@ -1,4 +1,5 @@
 <?php $p =  explode("/",$_SERVER['REQUEST_URI']);
+$url=$_SERVER['REQUEST_URI'];
 	   $page = end($p);
 
  ?>
@@ -42,7 +43,7 @@
 							</div>
 							<ul class="main-navigation-menu">
 								
-								<li <?php if($page == "home" || $page == "setting" || $page == "batch" || $page == "course"){ ?> class="active open" <?php } ?>>
+								<li <?php if($page == "home" || $page == "setting" ||$page == "users" || $page == "batch" || $page == "course"){ ?> class="active open" <?php } ?>>
 									<a href="javascript:void(0)">
 									<div class="item-content">
 										<div class="item-media">
@@ -72,23 +73,23 @@
 											<a href="{{Asset('center/course')}}"><i class="fa fa-graduation-cap"></i> <span class="title"> Manage Courses</span> </a>
 										</li>
 										<?php } ?>										
-										
+													
 									</ul>
 								</li>
 								
 								<?php if(Perm::check("View Staff Attendance") || Perm::check("Add Staff Attendance") || Perm::check("Edit Staff Attendance") || Perm::check("View Staff") || Perm::check("Add Staff") || Perm::check("Edit Staff") || Perm::check("Delete Staff")){ ?>
 								
-								<li <?php if($page == "staff" || $page == "attendance" ){ ?> class="active open" <?php } ?>>
-									<a href="javascript:void(0)">
+								<li <?php if($page == "staff" || strpos($url,"staff") ){ ?> class="active open" <?php } ?>>
+									<a href="{{Asset('center/staff')}}">
 									<div class="item-content">
 										<div class="item-media">
 											<div class="lettericon" data-text="S" data-size="sm" data-char-count="2"></div>
 										</div>
 										<div class="item-inner">
-											<span class="title"> Staff </span><i class="icon-arrow"></i>
+											<span class="title"> Staff </span>
 										</div>
 									</div> </a>
-									<ul class="sub-menu">
+									<!-- <ul class="sub-menu">
 									<?php if(Perm::check("View Staff") || Perm::check("Add Staff") || Perm::check("Edit Staff") || Perm::check("Delete Staff")){ ?>	
 									
 										<li>
@@ -104,12 +105,12 @@
 										
 									<?php } ?>
 										
-									</ul>
+									</ul> -->
 								</li>
 								<?php } ?>
 								
 								<?php if(Perm::check("View Enquiry") || Perm::check("Add Enquiry") || Perm::check("Edit Enquiry") || Perm::check("Delete Enquiry")){ ?>	
-								<li <?php if($page == "enquiry"){ ?> class="active open" <?php } ?>>
+								<li <?php if($page == "enquiry" ||  strpos($url,"enquiry") ){ ?> class="active open" <?php } ?>>
 									<a href="{{Asset('center/enquiry')}}">
 									<div class="item-content">
 										<div class="item-media">
@@ -139,7 +140,7 @@
 								
 								
 								<?php if(Perm::check("View Student Attendance") || Perm::check("Add Student Attendance") || Perm::check("Delete Student Attendance")){ ?>	
-								<li <?php if($page == "studentAttendance"){ ?> class="active open" <?php } ?>>
+								<!-- <li <?php if($page == "studentAttendance"){ ?> class="active open" <?php } ?>>
 									<a href="{{Asset('center/studentAttendance')}}">
 									<div class="item-content">
 										<div class="item-media">
@@ -149,7 +150,7 @@
 											<span class="title">Student Attendance </span>
 										</div>
 									</div> </a>
-								</li>
+								</li> -->
 								<?php } ?>
 								
 								<?php if(Perm::check("View Expense") || Perm::check("Add Expense") || Perm::check("Edit Expense") || Perm::check("Delete Expense")){ ?>	
@@ -195,7 +196,7 @@
 								<?php } ?>
 								
 								<?php if(Perm::check("Add Results") || Perm::check("View Passout Students")){ ?>	
-								<li <?php if($page == "result" || $page == "passOut" ){ ?> class="active open" <?php } ?>>
+								<!-- <li <?php if($page == "result" || $page == "passOut" ){ ?> class="active open" <?php } ?>>
 									<a href="javascript:void(0)">
 									<div class="item-content">
 										<div class="item-media">
@@ -219,7 +220,7 @@
 									<?php } ?>									
 										
 									</ul>
-								</li>
+								</li> -->
 								<?php } ?>
 								
 								<?php if(Perm::check("View Fee Report") || Perm::check("View Student Reporting") || Perm::check("View Expense Reporting")){ ?>	
@@ -259,7 +260,7 @@
 								
 								<?php } ?>
 								
-								
+<!-- 								
 								<?php if(Perm::check("View Todo") || Perm::check("Add Todo") || Perm::check("Edit Todo") || Perm::check("Delete Todo")){ ?>
 								<li <?php if($page == "Todo"){ ?> class="active open" <?php } ?>>
 									<a href="{{Asset('center/Todo')}}">
@@ -312,7 +313,7 @@
 										<?php } ?>
 										
 									</ul>
-								</li>
+								</li> -->
 								
 								<li <?php if($page == "logout"){ ?> class="active open" <?php } ?>>
 									<a href="{{Asset('center/logout')}}">

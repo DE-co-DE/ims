@@ -15,7 +15,16 @@ class Perm {
     public static function check($perm)
     {
        //get all permission of logged in user and make it an array
-	   $array = explode(",",Auth::user()->perm);
+	  // $array = explode(",",Auth::user()->perm);
+	//    $check=strpos(Auth::user()->perm,",");
+	//    if($check)
+	//    {
+	// 	   $array=json_decode(Auth::user()->perm);
+		 
+	//    }
+	//    else
+	//    {
+		$array = explode(",",Auth::user()->perm);
 	   
 	   //check for permission
 	   if(in_array($perm,$array) || in_array("All",$array))

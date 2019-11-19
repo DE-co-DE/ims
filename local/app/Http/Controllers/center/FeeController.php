@@ -130,8 +130,8 @@ class FeeController extends Controller {
 			
 			//total fee
 			$feeTotal = $totalFee + $Request->get('amount');				
-			$feeCourse = $course->course_fee - $course->discount - $course->old_course_fee;
-			
+			$feeCourse = intval($course->course_fee) - intval($course->discount) - intval($course->old_course_fee);
+
 			if($feeTotal > $feeCourse)
 			{
 				return Redirect::to('center/fee/add')->with('message', 'Sorry ! Your Fee Amount is greater then total course fee');
@@ -196,7 +196,7 @@ class FeeController extends Controller {
 			
 			//total fee
 			$feeTotal = $totalFee + $Request->get('amount');				
-			$feeCourse = $course->course_fee - $course->discount - $course->old_course_fee;
+			$feeCourse = intval($course->course_fee) - intval($course->discount) - intval($course->old_course_fee);
 			
 			if($feeTotal > $feeCourse)
 			{

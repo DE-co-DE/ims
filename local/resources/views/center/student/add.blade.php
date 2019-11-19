@@ -10,6 +10,8 @@
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<meta content="" name="description" />
+		<meta name="csrf-token" content="{{ csrf_token() }}">
+
 		<meta content="" name="author" />
 		<!-- end: META -->
 		<!-- start: GOOGLE FONTS -->
@@ -85,42 +87,7 @@
 						<Br><p class="text-center list-group-item list-group-item-success">{{ Session::get('message') }}</p>
 						@endif
 						
-						<script>
-
-						function getFee(id)
-						{
-						
-						var xmlhttp;
-						if (window.XMLHttpRequest)
-						{// code for IE7+, Firefox, Chrome, Opera, Safari
-						xmlhttp=new XMLHttpRequest();
-						}
-						else
-						{// code for IE6, IE5
-						xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-						}
-						xmlhttp.onreadystatechange=function()
-						{
-						if (xmlhttp.readyState==4 && xmlhttp.status==200)
-						{
-						document.getElementById("fee").innerHTML=xmlhttp.responseText;
-						}
-						}
-						<?php if(isset($res)){ ?>
-						
-							xmlhttp.open("GET","../../../getFee.php?id="+id,true);
-							
-						<?php } else { ?>
-						
-							xmlhttp.open("GET","../../getFee.php?id="+id,true);
-							
-						<?php } ?>
-						
-						xmlhttp.send();
-						}
-						</script>
-						
-	<?php
+					<?php
 	
 	if(isset($res))
 	{
@@ -262,7 +229,7 @@
 						<div class="form-group">
 						<label> Course <span class="symbol required"></span> </label>
 						<div class="form-group">
-						<select name="course_id" class="form-control" required onchange="getFee(this.value)">
+						<select name="course_id" class="form-control courseid" required >
 						<option value="">Select Course</option>
 						<?php
 						$courses = DB::table("course")->where('status',0)->get();
@@ -300,7 +267,7 @@
 						<div class="form-group" >
 						<label>Batch</label>
 						<div class="form-group">
-						<select name="batch" class="form-control" required>
+						<select name="batch" class="form-control batches" required>
 						<option value="">Select Batch</option>
 						</select>
 						</div>

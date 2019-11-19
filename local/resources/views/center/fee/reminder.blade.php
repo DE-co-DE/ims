@@ -120,7 +120,7 @@
 						  $fee  = DB::table("fee")->where('student_id',$stu->id)->where('course_id',$crs->id)->where('status',0)->where('type',0)->sum('amount');
 						  
 						  //calculate balance
-						  $totalFee = $fee - $courseName->discount - $courseName->old_course_fee;
+						  $totalFee = intval($fee) - intval($courseName->discount) - intval($courseName->old_course_fee);
 						  $balance  = $totalFee - $feeDeposit;
 						  
 						  //get due date

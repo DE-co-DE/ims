@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
 use App\Batch;
-use DB;
+use App\Course;
+use App\CourseBatch;
+use DB, Response;
 use Validator;
 use Redirect;
 class BatchController extends Controller {
@@ -164,6 +166,28 @@ class BatchController extends Controller {
 			return Redirect::to('login#Login')->with('loginError', 'Please Login ! For Access This Page');
 		}
 	}
-	
+	public function getByCourseId(Request $request)
+	{
+		if (Auth()->check() && Perm::check("Delete Batch"))
+		{		
+		//	dd($request->get('courseid'))	;			
+			$fee = Course::find($request->get('courseid'))->value('fee');    ;
+			$batches=CourseBatch::where('course_id',$request->get('courseid'))->get()->toArray();
+			$htmldata="";
+			if($batches){
+				foreach($batches as $bacth){
+					$htmldata.="<option value=".$bacth['batch_name'].">".$bacth['batch_name']."</option>";
+			}
+		}
+			$array=['fee'=>$fee,'batches'=>$htmldata];
+			$response = Response::json($array, 200);
+			return $response;
+								
+		}
+		else
+		{
+			return Redirect::to('login#Login')->with('loginError', 'Please Login ! For Access This Page');
+		}
+	}
 
 }

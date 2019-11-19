@@ -184,6 +184,7 @@ class StudentController extends Controller {
 	*/	
 	public function _add(Request $Request)
 	{
+		//dd($Request->all());
 		if (Auth()->check() && Perm::check("Add Students"))
 		{						
 			//Validation
@@ -207,7 +208,7 @@ class StudentController extends Controller {
 			}
 			else
 			{				
-				if($Request->get('deposit') > $Request->get('course_fee') - $Request->get('discount'))
+				if(intval($Request->get('deposit')) > intval($Request->get('course_fee')) - intval($Request->get('discount')))
 				{
 					return Redirect::to('center/student/add')->with('message', 'Sorry ! Your deposit fee amount is greater then course fee')->withInput();
 					exit;

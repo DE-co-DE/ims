@@ -19,8 +19,7 @@ class Controller extends BaseController
 	public function activity($notes)
 	{
 		//main admin activity will not be save,remove this condition if you want to save
-		if(Auth::user()->id != env("admin_id"))
-		{
+	
 			date_default_timezone_set("Asia/Kolkata");
 		
 			$data = new Activity;
@@ -29,6 +28,6 @@ class Controller extends BaseController
 			$data->date_added	= date("Y-m-d");
 			$data->time_added	= date("H:i:s");
 			$data->save();
-		}		
+		
 	}
 }

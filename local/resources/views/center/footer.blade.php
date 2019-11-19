@@ -9,3 +9,4 @@
 				</div>
 			</footer>
 					{!!View('center.date')!!}
+				

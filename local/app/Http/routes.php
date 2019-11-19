@@ -31,7 +31,7 @@ Route::post('center/batch/add','center\BatchController@_add');
 Route::get('center/batch/edit/{id}','center\BatchController@edit');
 Route::post('center/batch/edit/{id}','center\BatchController@_edit');
 Route::get('center/batch/delete/{id}','center\BatchController@delete');
-
+Route::post('center/batch/getByCourseId','center\BatchController@getByCourseId');
 /*
 @Manage Course
 */
@@ -41,6 +41,16 @@ Route::post('center/course/add','center\CourseController@_add');
 Route::get('center/course/edit/{id}','center\CourseController@edit');
 Route::post('center/course/edit/{id}','center\CourseController@_edit');
 Route::get('center/course/delete/{id}','center\CourseController@delete');
+
+/*
+@Manage Users
+*/
+Route::get('center/users','center\UserController@index');
+Route::get('center/users/add','center\UserController@add');
+Route::post('center/users/add','center\UserController@_add');
+Route::get('center/users/edit/{id}','center\UserController@edit');
+Route::post('center/users/edit/{id}','center\UserController@_edit');
+Route::get('center/users/delete/{id}','center\UserController@delete');
 
 /*
 @Manage Staff

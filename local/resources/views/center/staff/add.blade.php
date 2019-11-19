@@ -37,7 +37,7 @@
 		<!-- end: Packet CSS -->
 		<!-- Favicon -->
 		<link rel="shortcut icon" href="favicon.ico" />
-		<?php include_once("date.php"); ?>
+		
 	</head>
 	<!-- end: HEAD -->
 	<body>
@@ -197,7 +197,7 @@
 						<div class="form-group">
 						<label> Select Permissions <small>(This user can access only those section that you assign here)</small></label>
 						<div class="form-group">
-						<select name="perm[]" class="js-example-basic-multiple" multiple style="width:100%" placeholder="Select Permissions..">
+						<select name="perm[]" class="js-example-basic-multiple" multiple style="width:100%;height:400px" placeholder="Select Permissions..">
 						<option value="All">All Permissions</option>
 						<?php
 						$perms = DB::table("permissions")->orderBy("id","ASC")->get();

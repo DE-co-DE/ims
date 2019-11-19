@@ -1431,7 +1431,8 @@ span[role="slider"] {
   padding: 20px 15px;
 }
 .app-sidebar-fixed #sidebar, .app-navbar-fixed.app-sidebar-fixed #sidebar {
-  top: 0;
+  top: -75px;
+  z-index: 99999999999999999999999;
 }
 #sidebar nav {
   min-height: 100%;
