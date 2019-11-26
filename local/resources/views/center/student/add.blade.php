@@ -289,19 +289,38 @@
 						</div>						
 						
 						<div class="form-group">
-						<label>Any Discount ( <i>Optional</i> )</label>
+						<!-- <label>Any Discount ( <i>Optional</i> )</label> -->
 						<div class="form-group">
-						<input type="number"  name="discount" id="discount" class="form-control" >
+						<input type="hidden"  name="discount" id="discount" class="form-control" >
 						</div>
 						</div>
 						
+						
 						<div class="form-group">
+						<label>Select payment Type</label>
+						<div class="form-group">
+							<select name="payment_type" id="payment_type" class="form-control" >
+								<option value="full">full</option>
+								<option value="installment">installment</option>
+							</select>
+						
+						</div>
+						</div>
+						<!-- <div class="form-group">
 						<label>Deposit Ammount </label>
 						<div class="form-group">
 						<input type="text"  name="deposit" id="deposit" class="form-control" >
 						</div>
+						</div> -->
+						<div class="form-group">
+						<label>number of installment </label>
+						<div class="form-group">
+						<input type="number"  name="no_of_installment" id="no_of_installment" class="form-control" >
 						</div>
+						</div>
+						<div class="form-group" id="append">
 						
+						</div>
 						<div class="form-group">
 						<label> Joining Date <span class="symbol required"></span></label>
 						<div class="form-group">
@@ -366,9 +385,41 @@
 		<!-- start: JavaScript Event Handlers for this page -->
 		<script src="{{Asset('assets/js/index.js')}}"></script>
 		<script>
-			jQuery(document).ready(function() {
+			$(document).ready(function() {
+				$("#no_of_installment").hide();
 				Main.init();
 				Index.init();
+				$('#payment_type').change(function(){
+
+					let value=$(this).val();
+						$('#append').html("");
+						$("#no_of_installment").hide();
+					if(value==="installment"){
+					$("#no_of_installment").show();
+											}
+				});
+
+				$('#no_of_installment').keyup(function(){
+					let value=$(this).val();
+
+						$('#append').html("");
+						let total=Number($('#course_fee').val())
+						if(!total){
+							alert("Please enter course fee");
+							$(this).val('')
+							return
+						}
+						let divide=(total/value).toFixed(2)
+						var html="";
+						let date=new Date('mm-dd-yyyy');
+						for(var i=1;i<=value;i++){
+							html+=`<input type="text" value="installment#${i}">
+							<input type="number" value="${divide}" name="amounts[]" readonly>
+							<input type="date" name="due_dates[]" value="${i===1?date:''}" ><span>Due Date</span><br>
+							`
+						}
+						$('#append').html(html);
+				});
 			});
 		</script>
 		

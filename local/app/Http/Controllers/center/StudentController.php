@@ -184,7 +184,7 @@ class StudentController extends Controller {
 	*/	
 	public function _add(Request $Request)
 	{
-		//dd($Request->all());
+	//	dd($Request->all());
 		if (Auth()->check() && Perm::check("Add Students"))
 		{						
 			//Validation
@@ -208,11 +208,11 @@ class StudentController extends Controller {
 			}
 			else
 			{				
-				if(intval($Request->get('deposit')) > intval($Request->get('course_fee')) - intval($Request->get('discount')))
-				{
-					return Redirect::to('center/student/add')->with('message', 'Sorry ! Your deposit fee amount is greater then course fee')->withInput();
-					exit;
-				}
+				// if(intval($Request->get('deposit')) > intval($Request->get('course_fee')) - intval($Request->get('discount')))
+				// {
+				// 	return Redirect::to('center/student/add')->with('message', 'Sorry ! Your deposit fee amount is greater then course fee')->withInput();
+				// 	exit;
+				// }
 				
 				//add new student
 				$data = new Student;
@@ -260,18 +260,34 @@ class StudentController extends Controller {
 				$fees->save();
 				
 				
-				if($Request->get('deposit'))
+				if($Request->get('payment_type')=='full')
 				{
 					//if Fee Deposit							
 					$Dfees = new Fee;
 					$Dfees->added_by 	= Auth::user()->id;
 					$Dfees->student_id  = $data->id;
 					$Dfees->course_id   = $Request->get('course_id');
-					$Dfees->amount 	   	= $Request->get('deposit');
+					$Dfees->amount 	   	= $Request->get('course_fee');
 					$Dfees->naration    = "Fee Deposit On Joining";
 					$Dfees->type     	= 1;
 					$Dfees->date_added  = $Request->get('joining_date');
 					$Dfees->save();
+				} else{
+					$amounts=$Request->get('amounts');
+					foreach ($amounts as $key => $amount) {
+						$Dfees = new Fee;
+						$Dfees->added_by 	= Auth::user()->id;
+						$Dfees->student_id  = $data->id;
+						$Dfees->course_id   = $Request->get('course_id');
+						$Dfees->amount 	   	=  $key===0?$amount:'';
+						$Dfees->amount_due 	   	= $key!==0?$amount:'';
+						$Dfees->date_added  = $Request->get('joining_date');
+						$Dfees->naration    = $key===0?"Fee Deposit On Joining":"Installment#".$key;
+						$Dfees->due_date    = $key===0?Null:$Request->get('due_dates')[$key];
+						$Dfees->type     	= 1;
+						$Dfees->save();
+						
+					}
 				}
 				
 				//capture user activity

@@ -117,6 +117,7 @@ Route::get('center/fee/add','center\FeeController@add');
 Route::post('center/fee/add','center\FeeController@_add');
 Route::get('center/fee/edit/{id}/{sid}','center\FeeController@edit');
 Route::post('center/fee/edit/{id}/{sid}','center\FeeController@_edit');
+Route::get('center/fee/pay/{id}/{sid}','center\FeeController@_pay');
 Route::get('center/fee/delete/{id}','center\FeeController@delete');
 Route::get('center/fee/reminder','center\FeeController@reminder');
 

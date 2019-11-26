@@ -332,12 +332,12 @@
 									$totalPayArray[] = $Pfee->amount;
 									
 									$d 		= strtotime($Pfee->date_added);
-									$dd 	= date("d-M-y", $d);
+									$dd 	= $d?date("d-M-y", $d):"Pending";
 								?>
 								
 								<tr>
 								<td width="50%"><b>{{$Pfee->naration}}</b></td>
-								<td width="30%">Rs.{{$Pfee->amount}}</td>
+								<td width="30%">{{$Pfee->amount?"Rs. ".$Pfee->amount:"Pending"}}</td>
 								<td width="20%">{{$dd}} </td>
 								</tr>
 								

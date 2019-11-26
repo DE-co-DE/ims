@@ -14,6 +14,7 @@ use DB;
 use Validator;
 use Redirect;
 use Image;
+use App\Helpers\Invoice;
 class FeeController extends Controller {
 	
 	/*
@@ -78,7 +79,7 @@ class FeeController extends Controller {
 			$getCourse = StudentCourse::where('student_id',$id)->where('status',0)->first();
 			
 			//get deposit fee details
-			$details   = Fee::where('student_id',$id)->where('course_id',$getCourse->course_id)->where('type',1)->where('status',0)->orderBy('id','DESC')->get();
+			$details   = Fee::where('student_id',$id)->where('course_id',$getCourse->course_id)->where('type',1)->where('status',0)->orderBy('id','ASC')->get();
 			
 			//total fees
 			$fees   = Fee::where('student_id',$id)->where('course_id',$getCourse->course_id)->where('type',0)->sum('amount');
@@ -222,5 +223,27 @@ class FeeController extends Controller {
 			return Redirect::to('login#Login')->with('loginError', 'Please Login ! For Access This Page');
 		}
 	}
-
+/*
+	@Edit
+	*/	
+	public function _pay(Request $Request,$id,$sid)
+	{
+					
+			//get student & course details
+			$fee_ = Fee::find($id);
+			$amount_due=$fee_->amount_due;
+		
+			
+			//add new fee
+			$fee = Fee::find($id);				
+			$fee->amount    	=$amount_due;
+			$fee->date_added    = date('Y-m-d');
+			$fee->due_date    	= NULL;
+			$fee->updated_by   	= Auth::user()->id;
+			$fee->save();
+			Invoice::generate($id,$sid);
+		
+			return Redirect::to('center/fee/view/'.$sid)->with('message','Updated Successfully');
+		
+	}
 }

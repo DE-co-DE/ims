@@ -146,14 +146,14 @@
 						<tr>
 						<td><b>Narration</b></td>
 						<td><b>Amount</b></td>
-						<td><b>Date Added</b></td>
-						<td><b>Next Due Date</b></td>
+						<td><b>Paid Date </b></td>
+						<td><b> Due Date</b></td>
 						<td><b>Option</b></td>
 						</tr>
 						<?php foreach($details as $fee)
 						{
 							$d 		= strtotime($fee->date_added);
-							$dd 	= date("d-M-y", $d);
+							$dd 	=  $fee->amount?date("d-M-y", $d):"Pending";
 							
 							if($fee->due_date)
 							{
@@ -162,18 +162,22 @@
 							}
 							else
 							{
-								$dueDate = "Not Selected";
+								$dueDate = "Paid";
 							}
 						?>
 						<tr>
 						<td><b>{{$fee->naration}}</b></td>
-						<td>Rs.{{$fee->amount}}</td>
+						<td>Rs. {{$fee->amount?$fee->amount:$fee->amount_due}}</td>
 						<td>{{$dd}}</td>
 						<td>{{$dueDate}}</td>
 						<td>
 						<a href="javascript::void()" class="btn btn-warning" data-placement="top" data-toggle="tooltip" data-original-title="<?php echo Perm::addUpdate($fee->added_by,$fee->updated_by); ?>"><i class="fa fa-info"></i></a>
-						<a href="{{Asset('center/fee/edit/'.$fee->id.'/'.$chk->id)}}" class="btn btn-success"><i class="fa fa-edit"></i></a></td>
-						</tr>
+						<!-- <a href="{{Asset('center/fee/edit/'.$fee->id.'/'.$chk->id)}}" class="btn btn-success"><i class="fa fa-edit"></i></a></td>
+						-->
+						<?php if($dueDate!=='Paid'){?>
+						 <a href="{{Asset('center/fee/pay/'.$fee->id.'/'.$chk->id)}}" class="btn btn-success">Pay</a></td>
+						<?php } ?>
+						 </tr>
 						
 						<?php } ?>
 						

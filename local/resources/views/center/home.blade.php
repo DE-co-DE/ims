@@ -91,7 +91,7 @@
 						$course 	 = DB::table('course')->where('status',0)->count();
 						$staff 	     = DB::table('staff')->where('status',0)->count();
 						$enquiry 	 = DB::table('enquiry')->where('status',0)->count();
-						$todo 	 	 = DB::table('todo')->where('status',0)->count();
+						//$todo 	 	 = DB::table('todo')->where('status',0)->count();
 							
 						?>
 <div class="container-fluid container-fullw padding-bottom-10">
@@ -140,12 +140,7 @@
 </div>
 </div>
 
-<div class="col-xs-4 no-padding border-right">
-<div class="padding-10 text-center">
-<i class="fa fa-edit text-azure large-letters"></i>
-<span class="text-extra-large block margin-top-15">Todo : {{ $todo }}</span>
-</div>
-</div>
+
 </div>
 
 </div>
@@ -240,7 +235,7 @@
 	  $fee  = DB::table("fee")->where('student_id',$stu->id)->where('course_id',$crs->id)->where('status',0)->where('type',0)->sum('amount');
 	  
 	  //calculate balance
-	  $totalFee = $fee - $courseName->discount - $courseName->old_course_fee;
+	  $totalFee = intval($fee) - intval($courseName->discount) - intval($courseName->old_course_fee);
 	  $balance  = $totalFee - $feeDeposit;
 	  
 	  //get due date

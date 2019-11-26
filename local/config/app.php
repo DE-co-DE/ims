@@ -157,6 +157,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
+        Nitmedia\Wkhtml2pdf\L5Wkhtml2pdfServiceProvider::class,
+
 
     ],
 
@@ -205,7 +208,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 		'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 		'Perm' => App\Helpers\Perm::class,
-
+        'PDF'    => Nitmedia\Wkhtml2pdf\Facades\Wkhtml2pdf::class,
     ],
 
 ];
