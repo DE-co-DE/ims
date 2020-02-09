@@ -37,7 +37,7 @@
 		<!-- end: Packet CSS -->
 		<!-- Favicon -->
 		<link rel="shortcut icon" href="favicon.ico" />
-		<?php include_once("date.php"); ?>
+	
 	</head>
 	<!-- end: HEAD -->
 	<body>

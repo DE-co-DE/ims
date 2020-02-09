@@ -143,7 +143,7 @@
 						</div>
 						</div>
 						
-						<?php $array = DB::table("course_batch")->where('course_id',$res->id)->lists('batch_name'); ?>
+						<?php $array = DB::table("course_batch")->where('course_id',$res->id)->pluck('batch_name')->toArray();?>
 						
 						<div class="form-group">
 						<label> Select Batch For This Course <span class="symbol required"></span> </label>

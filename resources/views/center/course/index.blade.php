@@ -117,11 +117,12 @@
 							$status = "<span style='color:red'>Disabled</span>";
 						}
 						
-						$courseBatch = DB::table("course_batch")->where("course_id",$row->id)->lists('batch_name');
+						$courseBatch = DB::table("course_batch")->where("course_id",$row->id)->pluck('batch_name')->toArray();
 						
 						if($courseBatch)
 						{
-							$batchName = implode("<br>",$courseBatch);
+						//    dd($courseBatch);
+							$batchName = implode("\n",$courseBatch);
 						}
 						else
 						{

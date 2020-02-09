@@ -53,7 +53,7 @@ class FeeController extends Controller {
 			$toDate 	= date("Y-m-d");			
 			$dateStop  	= date('Y-m-d', strtotime($toDate . ' +7 day'));
 			
-			$fees = Fee::where('due_date','>=',$toDate)->where('due_date','<=',$dateStop)->select('student_id')->distinct()->orderBy('due_date','ASC')->lists('student_id');
+			$fees = Fee::where('due_date','>=',$toDate)->where('due_date','<=',$dateStop)->select('student_id')->distinct()->orderBy('due_date','ASC')->pluck('student_id');
 			
 			$getStudent = Student::whereIn('id',$fees)->paginate(100);
 			
@@ -236,7 +236,7 @@ class FeeController extends Controller {
 			
 			//add new fee
 			$filename=	Invoice::generate($id,$sid);
-			dd();
+		//	dd();
 			$fee = Fee::find($id);				
 			$fee->amount    	=$amount_due;
 			$fee->date_added    = date('Y-m-d');

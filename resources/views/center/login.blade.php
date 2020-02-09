@@ -16,24 +16,23 @@
 		<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 		<!-- end: GOOGLE FONTS -->
 		<!-- start: MAIN CSS -->
-		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-		<link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
-		<link rel="stylesheet" href="bower_components/themify-icons/themify-icons.css">
-		<link rel="stylesheet" href="bower_components/flag-icon-css/css/flag-icon.min.css">
-		<link rel="stylesheet" href="bower_components/animate.css/animate.min.css">
-		<link rel="stylesheet" href="bower_components/perfect-scrollbar/css/perfect-scrollbar.min.css">
-		<link rel="stylesheet" href="bower_components/switchery/dist/switchery.min.css">
-		<link rel="stylesheet" href="bower_components/seiyria-bootstrap-slider/dist/css/bootstrap-slider.min.css">
-		<link rel="stylesheet" href="bower_components/ladda/dist/ladda-themeless.min.css">
-		<link rel="stylesheet" href="bower_components/slick.js/slick/slick.css">
-		<link rel="stylesheet" href="bower_components/slick.js/slick/slick-theme.css">
+		<link rel="stylesheet" href="{{public('bower_components/font-awesome/css/font-awesome.min.css')}}">
+		<link rel="stylesheet" href="{{public('bower_components/themify-icons/themify-icons.css')}}">
+		<link rel="stylesheet" href="{{public('bower_components/flag-icon-css/css/flag-icon.min.css')}}">
+		<link rel="stylesheet" href="{{public('bower_components/animate.css/animate.min.css')}}">
+		<link rel="stylesheet" href="{{public('bower_components/perfect-scrollbar/css/perfect-scrollbar.min.css')}}">
+		<link rel="stylesheet" href="{{public('bower_components/switchery/dist/switchery.min.css')}}">
+		<link rel="stylesheet" href="{{public('bower_components/seiyria-bootstrap-slider/dist/css/bootstrap-slider.min.css')}}">
+		<link rel="stylesheet" href="{{public('bower_components/ladda/dist/ladda-themeless.min.css')}}">
+		<link rel="stylesheet" href="{{public('bower_components/slick.js/slick/slick.css')}}">
+		<link rel="stylesheet" href="{{public('bower_components/slick.js/slick/slick-theme.css')}}">
 		<!-- end: MAIN CSS -->
 		<!-- start: CSS REQUIRED FOR THIS PAGE ONLY -->
 		<!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
 		<!-- start: Packet CSS -->
-		<link rel="stylesheet" href="assets/css/styles.css">
-		<link rel="stylesheet" href="assets/css/plugins.css">
-		<link rel="stylesheet" href="assets/css/themes/lyt1-theme-1.css" id="skin_color">
+		<link rel="stylesheet" href="{{public('publics/css/styles.css')}}">
+		<link rel="stylesheet" href="{{public('publics/css/plugins.css')}}">
+		<link rel="stylesheet" href="{{public('publics/css/themes/lyt1-theme-1.css')}}" id="skin_color">
 		<!-- end: Packet CSS -->
 		<!-- Favicon -->
 		<link rel="shortcut icon" href="favicon.ico" />
@@ -45,7 +44,7 @@
 		<div class="row">
 			<div class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
 				<div class="logo text-center">
-					<img src="assets/images/logo-big.png" alt="" class="img-responsive" />
+					<img src="publics/images/logo-big.png" alt="" class="img-responsive" />
 				</div>
 				<Br>
 				<p class="text-center list-group-item list-group-item-success">
@@ -56,7 +55,8 @@
 				@endif
 				<!-- start: LOGIN BOX -->
 				<div class="box-login">
-					<form action="{!! Asset('login') !!}" method="post" class="form-login">
+				    {{public()}}
+					<form action="{!! public('login') !!}" method="post" class="form-login">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						<div class="form-group">
 							<input type="text" class="form-control" name="username" placeholder="Username">
@@ -107,11 +107,11 @@
 		<script src="bower_components/bb-jquery-validation/dist/jquery.validate.js"></script>
 		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 		<!-- start: Packet JAVASCRIPTS -->
-		<script src="assets/js/letter-icons.js"></script>
-		<script src="assets/js/main.js"></script>
+		<script src="publics/js/letter-icons.js"></script>
+		<script src="publics/js/main.js"></script>
 		<!-- end: Packet JAVASCRIPTS -->
 		<!-- start: JavaScript Event Handlers for this page -->
-		<script src="assets/js/login.js"></script>
+		<script src="publics/js/login.js"></script>
 		<script>
 			jQuery(document).ready(function() {
 				Main.init();
