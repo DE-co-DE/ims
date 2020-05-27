@@ -24,7 +24,7 @@
 						</ul>
 													
 							<?php
-							$centerName = DB::table("users")->where("id",env("admin_id"))->first();
+							$centerName = DB::table("users")->where("id",1)->first();
 							?>
 							<br><h2 class="mainTitle no-margin"  style="color:white;float:right;margin-right:10px">{{$centerName->center_name}}</h2>
 						
